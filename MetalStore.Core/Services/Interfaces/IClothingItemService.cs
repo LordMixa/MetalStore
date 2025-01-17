@@ -2,7 +2,7 @@
 
 namespace MetalStore.Core.Services.Interfaces;
 
-public interface IClothingItem
+public interface IClothingItemService
 {
     public Task<ClothingItemModel?> GetClothingItemByPublicIdAsync(int publicClothingItemId);
 }

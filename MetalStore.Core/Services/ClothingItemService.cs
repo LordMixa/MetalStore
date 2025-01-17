@@ -3,24 +3,23 @@ using MetalStore.Core.Models;
 using MetalStore.Core.Services.Interfaces;
 using MetalStore.Data.Repositories.Interfaces;
 
-namespace MetalStore.Core.Services
+namespace MetalStore.Core.Services;
+
+public class ClothingItemService : IClothingItemService
 {
-    public class ClothingItemService : IClothingItem
+    private readonly IMapper _mapper;
+    private readonly IClothingItemRepository _clothingItemRepository;
+
+    public ClothingItemService(IMapper mapper, IClothingItemRepository clothingItemRepository)
     {
-        private readonly IMapper _mapper;
-        private readonly IClothingItemRepository _clothingItemRepository;
+        _clothingItemRepository = clothingItemRepository;
+        _mapper = mapper;
+    }
 
-        public ClothingItemService(IMapper mapper, IClothingItemRepository clothingItemRepository)
-        {
-            _clothingItemRepository = clothingItemRepository;
-            _mapper = mapper;
-        }
+    public async Task<ClothingItemModel?> GetClothingItemByPublicIdAsync(int publicClothingItemId)
+    {
+        var clothingItem = await _clothingItemRepository.GetClothingItemByPublicIdAsync(publicClothingItemId);
 
-        public async Task<ClothingItemModel?> GetClothingItemByPublicIdAsync(int publicClothingItemId)
-        {
-            var clothingItem = await _clothingItemRepository.GetClothingItemByPublicIdAsync(publicClothingItemId);
-
-            return _mapper.Map<ClothingItemModel>(clothingItem);
-        }
+        return _mapper.Map<ClothingItemModel>(clothingItem);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MetalStore.Core.Enums;
 
 namespace MetalStore.Core.Models;
+
 public class ClothingItemModel
 {
     public Guid ClothingItemId { get; set; }

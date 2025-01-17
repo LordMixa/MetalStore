@@ -1,17 +1,16 @@
-﻿using MetalStore.Data.Repositories.Interfaces;
-using MetalStore.Data.Repositories;
-using MetalStore.Data;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MetalStore.Core.MapperConfigurations;
+using MetalStore.Core.Services.Interfaces;
+using MetalStore.Core.Services;
 
 namespace MetalStore.Core;
+
 public static class Configuration
 {
     public static void Configure(IServiceCollection serviceCollection, string connectionString)
     {
-        serviceCollection.AddTransient<IClothingItemRepository, ClothingItemRepository>();
-
-        serviceCollection.AddDbContext<MetalStoreContext>(options =>
-            options.UseSqlServer(connectionString));
+        Data.Configuration.Configure(serviceCollection, connectionString);
+        serviceCollection.AddAutoMapper(typeof(ModelsMappingProfile));
+        serviceCollection.AddTransient<IClothingItemService, ClothingItemService>();
     }
 }
