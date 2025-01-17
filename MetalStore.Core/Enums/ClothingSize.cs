@@ -1,13 +1,12 @@
-﻿namespace MetalStore.Core.Enums
+﻿namespace MetalStore.Core.Enums;
+
+public enum ClothingSize
 {
-    public enum ClothingSize
-    {
-        XS,
-        S,
-        M,
-        L,
-        XL,
-        XXL,
-        XXXL
-    }
+    XS,
+    S,
+    M,
+    L,
+    XL,
+    XXL,
+    XXXL
 }

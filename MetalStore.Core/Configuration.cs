@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MetalStore.Data.Repositories.Interfaces;
+using MetalStore.Data.Repositories;
+using MetalStore.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
-namespace MetalStore.Core
+namespace MetalStore.Core;
+public static class Configuration
 {
-    internal class Configuration
+    public static void Configure(IServiceCollection serviceCollection, string connectionString)
     {
+        serviceCollection.AddTransient<IClothingItemRepository, ClothingItemRepository>();
+
+        serviceCollection.AddDbContext<MetalStoreContext>(options =>
+            options.UseSqlServer(connectionString));
     }
 }
