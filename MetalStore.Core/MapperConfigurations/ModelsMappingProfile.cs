@@ -9,5 +9,6 @@ public class ModelsMappingProfile:Profile
     public ModelsMappingProfile()
     {
         CreateMap<ClothingItem, ClothingItemModel>().ReverseMap();
+        CreateMap<AuditLog, AuditLogModel>().ReverseMap();
     }
 }
