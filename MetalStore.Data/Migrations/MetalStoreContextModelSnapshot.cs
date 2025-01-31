@@ -51,7 +51,7 @@ namespace MetalStore.Data.Migrations
 
                     b.HasKey("AuditLogId");
 
-                    b.ToTable("AuditLogs");
+                    b.ToTable("AuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("MetalStore.Data.Entities.ClothingItem", b =>
@@ -84,7 +84,7 @@ namespace MetalStore.Data.Migrations
 
                     b.HasKey("ClothingItemId");
 
-                    b.ToTable("ClothingItems");
+                    b.ToTable("ClothingItems", (string)null);
                 });
 #pragma warning restore 612, 618
         }

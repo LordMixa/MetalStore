@@ -1,5 +1,6 @@
 ﻿using MetalStore.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace MetalStore.Data;
 
@@ -14,30 +15,6 @@ public class MetalStoreContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AuditLog>()
-            .HasKey(n => n.AuditLogId); 
-        modelBuilder.Entity<AuditLog>()
-            .Property(n => n.AuditLogId)
-            .ValueGeneratedOnAdd();
-        modelBuilder.Entity<AuditLog>()
-           .Property(n => n.HttpMethod)
-           .HasMaxLength(255);
-        modelBuilder.Entity<AuditLog>()
-           .Property(n => n.Url)
-           .HasMaxLength(255);
-        modelBuilder.Entity<ClothingItem>()
-            .HasKey(n => n.ClothingItemId);
-        modelBuilder.Entity<ClothingItem>()
-            .Property(n => n.ClothingItemId)
-            .ValueGeneratedOnAdd();
-        modelBuilder.Entity<ClothingItem>()
-           .Property(n => n.Name)
-           .HasMaxLength(30);
-        modelBuilder.Entity<ClothingItem>()
-           .Property(n => n.Description)
-           .HasMaxLength(255); 
-        modelBuilder.Entity<ClothingItem>()
-           .Property(n => n.Brand)
-           .HasMaxLength(20);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
