@@ -21,5 +21,11 @@ public class ClothingItemConfiguration : IEntityTypeConfiguration<ClothingItem>
 
         builder.Property(n => n.Brand)
                .HasMaxLength(20);
+
+        builder.HasMany(n => n.Orders)
+               .WithMany(n => n.ClothingItems);
+        builder.HasOne(n => n.SaleData)
+               .WithOne(s => s.ClothingItem)
+               .OnDelete(DeleteBehavior.Cascade); ;
     }
 }

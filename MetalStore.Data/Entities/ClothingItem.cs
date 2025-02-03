@@ -11,4 +11,6 @@ public class ClothingItem
     public string? Description { get; set; }
     public ClothingSize Size { get; set; }
     public string? Brand { get; set; }
+    public SaleData SaleData { get; set; }
+    public List<Order> Orders { get; set; }
 }

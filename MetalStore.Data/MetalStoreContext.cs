@@ -12,6 +12,9 @@ public class MetalStoreContext : DbContext
 
     public DbSet<ClothingItem> ClothingItems { get; set; }
     public DbSet<AuditLog> AuditLogs { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<SaleData> SaleData { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
