@@ -13,6 +13,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(n => n.UserId)
                .ValueGeneratedOnAdd();
 
+        builder.Property(n => n.PublicUserId)
+               .HasMaxLength(50);
+
         builder.Property(n => n.Name)
                .HasMaxLength(30);
 

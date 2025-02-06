@@ -12,9 +12,12 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.Property(n => n.OrderId)
                .ValueGeneratedOnAdd();
-        
+
+        builder.Property(n => n.PublicOrderId)
+               .HasMaxLength(50);
+
         builder.HasOne(n => n.User)
-            .WithMany(u => u.Orders)
-            .OnDelete(DeleteBehavior.Cascade);
+               .WithMany(u => u.Orders)
+               .OnDelete(DeleteBehavior.Cascade);
     }
 }

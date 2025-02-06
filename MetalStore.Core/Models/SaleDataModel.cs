@@ -1,6 +1,8 @@
-﻿namespace MetalStore.Data.Entities;
+﻿using MetalStore.Data.Entities;
 
-public class SaleData
+namespace MetalStore.Core.Models;
+
+public class SaleDataModel
 {
     public int SaleDataId { get; set; }
     public int ClothingItemId { get; set; }

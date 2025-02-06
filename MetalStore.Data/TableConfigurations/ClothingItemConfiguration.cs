@@ -13,6 +13,9 @@ public class ClothingItemConfiguration : IEntityTypeConfiguration<ClothingItem>
         builder.Property(n => n.ClothingItemId)
                .ValueGeneratedOnAdd();
 
+        builder.Property(n => n.PublicClothingItemId)
+               .HasMaxLength(50);
+
         builder.Property(n => n.Name)
                .HasMaxLength(30);
 

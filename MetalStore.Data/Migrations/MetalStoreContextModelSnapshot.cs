@@ -22,21 +22,6 @@ namespace MetalStore.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ClothingItemOrder", b =>
-                {
-                    b.Property<Guid>("ClothingItemsClothingItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("OrdersOrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClothingItemsClothingItemId", "OrdersOrderId");
-
-                    b.HasIndex("OrdersOrderId");
-
-                    b.ToTable("ClothingItemOrder");
-                });
-
             modelBuilder.Entity("MetalStore.Data.Entities.AuditLog", b =>
                 {
                     b.Property<int>("AuditLogId")
@@ -66,7 +51,7 @@ namespace MetalStore.Data.Migrations
 
                     b.HasKey("AuditLogId");
 
-                    b.ToTable("AuditLogs");
+                    b.ToTable("AuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("MetalStore.Data.Entities.ClothingItem", b =>
@@ -99,130 +84,7 @@ namespace MetalStore.Data.Migrations
 
                     b.HasKey("ClothingItemId");
 
-                    b.ToTable("ClothingItems");
-                });
-
-            modelBuilder.Entity("MetalStore.Data.Entities.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PublicOrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("MetalStore.Data.Entities.SaleData", b =>
-                {
-                    b.Property<Guid>("SaleDataId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ClothingCount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ClothingItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ClothingPrice")
-                        .HasColumnType("int");
-
-                    b.HasKey("SaleDataId");
-
-                    b.HasIndex("ClothingItemId")
-                        .IsUnique();
-
-                    b.ToTable("SaleData");
-                });
-
-            modelBuilder.Entity("MetalStore.Data.Entities.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("PublicUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ClothingItemOrder", b =>
-                {
-                    b.HasOne("MetalStore.Data.Entities.ClothingItem", null)
-                        .WithMany()
-                        .HasForeignKey("ClothingItemsClothingItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MetalStore.Data.Entities.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MetalStore.Data.Entities.Order", b =>
-                {
-                    b.HasOne("MetalStore.Data.Entities.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MetalStore.Data.Entities.SaleData", b =>
-                {
-                    b.HasOne("MetalStore.Data.Entities.ClothingItem", "ClothingItem")
-                        .WithOne("SaleData")
-                        .HasForeignKey("MetalStore.Data.Entities.SaleData", "ClothingItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClothingItem");
-                });
-
-            modelBuilder.Entity("MetalStore.Data.Entities.ClothingItem", b =>
-                {
-                    b.Navigation("SaleData")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MetalStore.Data.Entities.User", b =>
-                {
-                    b.Navigation("Orders");
+                    b.ToTable("ClothingItems", (string)null);
                 });
 #pragma warning restore 612, 618
         }

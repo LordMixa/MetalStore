@@ -4,8 +4,8 @@ namespace MetalStore.Core.Models;
 
 public class OrderModel
 {
-    public Guid OrderId { get; set; }
-    public int PublicOrderId { get; set; }
+    public int OrderId { get; set; }
+    public required string PublicOrderId { get; set; }
     public int UserId { get; set; }
-    public DateTime OrderDate { get; set; }
+    public DateTime OrderDateAndTime { get; set; }
 }
