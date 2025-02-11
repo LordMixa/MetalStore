@@ -10,5 +10,9 @@ public class ModelsMappingProfile:Profile
     {
         CreateMap<ClothingItem, ClothingItemModel>().ReverseMap();
         CreateMap<AuditLog, AuditLogModel>().ReverseMap();
+        CreateMap<ClothingItemFilterModel, ClothingItemFilter>();
+        CreateMap<SaleData, SaleDataModel>();
+        CreateMap<Order, OrderModel>();
+        CreateMap<User, UserModel>();
     }
 }

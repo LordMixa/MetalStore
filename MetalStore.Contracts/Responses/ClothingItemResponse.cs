@@ -11,4 +11,5 @@ public class ClothingItemResponse
     public string? Description { get; set; }
     public ClothingSize Size { get; set; }
     public string? Performer { get; set; }
+    public SaleDataResponse? SaleData { get; set; }
 }
