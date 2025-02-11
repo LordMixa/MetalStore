@@ -21,7 +21,8 @@ public class AuditLogMiddleware
         {
             HttpMethod = context.Request.Method,
             Request = await context.GetBody(),
-            Url = context.Request.Path
+            Url = context.Request.Path,
+            AuditDateAndTime = DateTime.UtcNow
         };
 
         var originalBodyStream = context.Response.Body;
