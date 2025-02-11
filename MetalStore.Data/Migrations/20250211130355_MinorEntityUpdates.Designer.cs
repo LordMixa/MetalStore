@@ -4,6 +4,7 @@ using MetalStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MetalStore.Data.Migrations
 {
     [DbContext(typeof(MetalStoreContext))]
-    partial class MetalStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20250211130355_MinorEntityUpdates")]
+    partial class MinorEntityUpdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,6 +80,10 @@ namespace MetalStore.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClothingItemId"));
 
+                    b.Property<string>("Brand")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Description")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -85,10 +92,6 @@ namespace MetalStore.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Performer")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PublicClothingItemId")
                         .IsRequired()
@@ -102,9 +105,6 @@ namespace MetalStore.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ClothingItemId");
-
-                    b.HasIndex("PublicClothingItemId")
-                        .IsUnique();
 
                     b.ToTable("ClothingItems");
                 });
@@ -129,9 +129,6 @@ namespace MetalStore.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("PublicOrderId")
-                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -187,9 +184,6 @@ namespace MetalStore.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("PublicUserId")
-                        .IsUnique();
 
                     b.ToTable("Users");
                 });

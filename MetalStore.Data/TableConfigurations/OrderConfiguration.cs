@@ -16,6 +16,9 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(n => n.PublicOrderId)
                .HasMaxLength(50);
 
+        builder.HasIndex(n => n.PublicOrderId)
+            .IsUnique();
+
         builder.HasOne(n => n.User)
                .WithMany(u => u.Orders)
                .OnDelete(DeleteBehavior.Cascade);

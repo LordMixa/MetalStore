@@ -16,7 +16,7 @@ public class ClothingItemService : IClothingItemService
         _mapper = mapper;
     }
 
-    public async Task<ClothingItemModel?> GetClothingItemByPublicIdAsync(int publicClothingItemId)
+    public async Task<ClothingItemModel?> GetClothingItemByPublicIdAsync(string publicClothingItemId)
     {
         var clothingItem = await _clothingItemRepository.GetClothingItemByPublicIdAsync(publicClothingItemId);
 

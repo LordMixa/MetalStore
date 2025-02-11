@@ -16,13 +16,16 @@ public class ClothingItemConfiguration : IEntityTypeConfiguration<ClothingItem>
         builder.Property(n => n.PublicClothingItemId)
                .HasMaxLength(50);
 
+        builder.HasIndex(n => n.PublicClothingItemId)
+            .IsUnique();
+
         builder.Property(n => n.Name)
                .HasMaxLength(30);
 
         builder.Property(n => n.Description)
                .HasMaxLength(255);
 
-        builder.Property(n => n.Brand)
+        builder.Property(n => n.Performer)
                .HasMaxLength(20);
 
         builder.HasMany(n => n.Orders)

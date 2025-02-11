@@ -4,5 +4,5 @@ namespace MetalStore.Data.Repositories.Interfaces;
 
 public interface IClothingItemRepository
 {
-    public Task<ClothingItem?> GetClothingItemByPublicIdAsync(int publicClothingItemId);
+    public Task<ClothingItem?> GetClothingItemByPublicIdAsync(string publicClothingItemId);
 }
