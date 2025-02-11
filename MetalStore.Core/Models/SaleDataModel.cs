@@ -8,5 +8,5 @@ public class SaleDataModel
     public int ClothingItemId { get; set; }
     public int ClothingCount { get; set; }
     public double ClothingPrice { get; set; }
-    public ClothingItem? ClothingItem { get; set; }
+    public ClothingItemModel? ClothingItem { get; set; }
 }

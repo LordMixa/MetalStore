@@ -1,6 +1,4 @@
-﻿using MetalStore.Data.Entities;
-
-namespace MetalStore.Core.Models;
+﻿namespace MetalStore.Core.Models;
 
 public class OrderModel
 {
@@ -8,5 +6,5 @@ public class OrderModel
     public required string PublicOrderId { get; set; }
     public int UserId { get; set; }
     public DateTime OrderDateAndTime { get; set; }
-    public IEnumerable<ClothingItem>? ClothingItems { get; set; }
+    public IEnumerable<ClothingItemModel>? ClothingItems { get; set; }
 }
