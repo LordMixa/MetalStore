@@ -14,7 +14,7 @@ public class ClothingItemRepository : IClothingItemRepository, IDisposable
         _metalStoreContext = metalStoreContext;
     }
 
-    public async Task<ClothingItem?> GetClothingItemByPublicIdAsync(int publicClothingItemId)
+    public async Task<ClothingItem?> GetClothingItemByPublicIdAsync(string publicClothingItemId)
     {
         var clothingItem = await _metalStoreContext.ClothingItems.FirstOrDefaultAsync(
             x => x.PublicClothingItemId == publicClothingItemId);

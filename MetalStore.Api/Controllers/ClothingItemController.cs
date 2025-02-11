@@ -18,7 +18,7 @@ public class ClothingItemController : ControllerBase
     }
 
     [HttpGet("{publicClothingItemId}")]
-    public async Task<IActionResult> GetClothingItemByPublicId(int publicClothingItemId)
+    public async Task<IActionResult> GetClothingItemByPublicId(string publicClothingItemId)
     {
         var clothingItemModel = await _clothingItemService.GetClothingItemByPublicIdAsync(publicClothingItemId);
         var clothingItemContract = _mapper.Map<ClothingItemResponse>(clothingItemModel);

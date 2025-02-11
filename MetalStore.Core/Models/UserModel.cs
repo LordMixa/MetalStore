@@ -6,4 +6,5 @@ public class UserModel
     public required string PublicUserId { get; set; }
     public required string Email { get; set; }
     public required string Name { get; set; }
+    public IEnumerable<OrderModel>? Orders { get; }
 }
