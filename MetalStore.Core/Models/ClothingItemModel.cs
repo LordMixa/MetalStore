@@ -4,8 +4,8 @@ namespace MetalStore.Core.Models;
 
 public class ClothingItemModel
 {
-    public Guid ClothingItemId { get; set; }
-    public int PublicClothingItemId { get; set; }
+    public int ClothingItemId { get; set; }
+    public required string PublicClothingItemId { get; set; }
     public required string Name { get; set; }
     public ClothingType Type { get; set; }
     public string? Description { get; set; }
