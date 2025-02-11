@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using MetalStore.Data.Entities;
 
 namespace MetalStore.Core.Models;
 
@@ -8,4 +8,5 @@ public class OrderModel
     public required string PublicOrderId { get; set; }
     public int UserId { get; set; }
     public DateTime OrderDateAndTime { get; set; }
+    public IEnumerable<ClothingItem>? ClothingItems { get; set; }
 }
