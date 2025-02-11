@@ -14,6 +14,18 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        var allowAll = "AllowAll";
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(allowAll, policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            });
+        });
+
         builder.Services.AddAutoMapper(typeof(ContractsMappingProfile));
 
         string connectionString = builder.Configuration.GetConnectionString("MetalStoreDb");
@@ -28,6 +40,8 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseCors(allowAll);
 
         app.UseMiddleware<ExceptionMiddleware>();
 
