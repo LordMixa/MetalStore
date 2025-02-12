@@ -1,4 +1,5 @@
 ﻿using MetalStore.Data.Entities;
+using MetalStore.Data.Extensions;
 using MetalStore.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +17,39 @@ public class ClothingItemRepository : IClothingItemRepository, IDisposable
 
     public async Task<ClothingItem?> GetClothingItemByPublicIdAsync(string publicClothingItemId)
     {
-        var clothingItem = await _metalStoreContext.ClothingItems.FirstOrDefaultAsync(
+        var clothingItem = await _metalStoreContext.ClothingItems
+            .Include(c => c.SaleData)
+            .FirstOrDefaultAsync(
             x => x.PublicClothingItemId == publicClothingItemId);
 
         return clothingItem;
+    }
+
+    public async Task<IEnumerable<ClothingItem>?> GetClothingItemsAsync()
+    {
+        var clothingItems = await _metalStoreContext.ClothingItems.ToListAsync();
+
+        return clothingItems;
+    }
+
+    public async Task<IEnumerable<ClothingItem>?> GetClothingItemsByFilterAsync(ClothingItemFilter clothingItemFilter)
+    {
+        var query = _metalStoreContext.ClothingItems
+                 .Include(c => c.SaleData)
+                 .AsQueryable();
+
+        query = query.FilterByPerformers(clothingItemFilter.Performers)
+                     .FilterBySizes(clothingItemFilter.Sizes)
+                     .FilterByTypes(clothingItemFilter.Types)
+                     .FilterByName(clothingItemFilter.Name)
+                     .FilterByPublicClothingItemId(clothingItemFilter.PublicClothingItemId)
+                     .FilterByMinPrice(clothingItemFilter.MinPrice)
+                     .FilterByMaxPrice(clothingItemFilter.MaxPrice)
+                     .FilterByAvailability(clothingItemFilter.IsAvailable);
+
+        var clothingItems = await query.ToListAsync();
+
+        return clothingItems;
     }
 
     public virtual void Dispose(bool disposing)
@@ -28,7 +58,7 @@ public class ClothingItemRepository : IClothingItemRepository, IDisposable
         {
             if (disposing)
             {
-                _metalStoreContext.Dispose();
+                _metalStoreContext?.Dispose();
             }
             _disposed = true;
         }

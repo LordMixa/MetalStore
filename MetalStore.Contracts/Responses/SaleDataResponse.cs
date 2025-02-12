@@ -1,6 +1,6 @@
-﻿namespace MetalStore.Core.Models;
+﻿namespace MetalStore.Contracts.Responses;
 
-public class SaleDataModel
+public class SaleDataResponse
 {
     public int SaleDataId { get; set; }
     public int ClothingItemId { get; set; }
